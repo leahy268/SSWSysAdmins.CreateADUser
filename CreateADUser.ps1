@@ -26,7 +26,7 @@ foreach($User in $UserList)
 
         Set-AdUser -Identity $User["SysAdmin_User_SAM"] -Enabled:$True -PasswordNeverExpires:$True -ChangePasswordAtLogon:$False
 
-        Set-ADUser -Identity $User["SysAdmin_User_SAM"] -Add @{Proxyaddresses="SMTP:"+$User["SysAdmin_User_SAM"]+'@sswcom.onmicrosoft.com';c=$User"SysAdmin_User_Country"}
+        Set-ADUser -Identity $User["SysAdmin_User_SAM"] -Add @{Proxyaddresses="SMTP:"+$User["SysAdmin_User_SAM"]+'@sswcom.onmicrosoft.com';c=$User["SysAdmin_User_Country"]}
 
         $GroupArray = ($User["SysAdmin_User_Groups"] -split ', ')
 
