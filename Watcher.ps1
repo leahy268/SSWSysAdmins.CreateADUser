@@ -8,7 +8,7 @@ $watcher.EnableRaisingEvents = $true
 ## Runs powershell script as an Administrator
 $action = 
 {
-    PowerShell -NoProfile -ExecutionPolicy Unrestricted -Command "& {Start-Process PowerShell -ArgumentList '-NoProfile -ExecutionPolicy Unrestricted -File ""C:\AutoCreateADUser\CreateADUser.ps1""' -Verb RunAs}";
+    Start-Process PowerShell -ArgumentList '-NoProfile -ExecutionPolicy Unrestricted -File "C:\AutoCreateADUser\CreateADUser.ps1" -Verb RunAs'
 }
 
 ## Defines what events are being watched
