@@ -2,14 +2,9 @@
 Function LogWrite
 {
    $username = $env:USERNAME
-   
    $PcName = $env:computername
-
-
    $Stamp = (Get-Date).toString("yyyy/MM/dd HH:mm:ss")
    $Line = "$Stamp $PcName $Username $args"
-
-
    Add-content $Logfile -value $Line
    Write-Host $Line
 }
@@ -17,7 +12,7 @@ Function LogWrite
 $Logfile = "C:\AutoCreateADUser\Log.txt"
 LogWrite "Auto Create User Log Started"
 
-## Define credentials and login to SharePoint
+## Define credentials and login to SharePoint with PnPOnline
 $Username = “stevenandrews@ssw.com.au”
 $PasswordContent = cat "C:\AutoCreateADUser\PasswordSharePoint.txt"
 $Password = ConvertTo-SecureString -String $PasswordContent -AsPlainText -Force
@@ -25,12 +20,11 @@ $Cred = new-object -typename System.Management.Automation.PSCredential -argument
 $SiteUrl = "https://sswcom.sharepoint.com/sysadmin"
 Connect-PnPOnline –Url $SiteUrl –Credentials $Cred -NoTelemetry
 
-## Defines List name in SharePoint
+## Defines List in SharePoint Title is used for SysAdmin_User_UPN
 $ListName = "New AD User"
-
 $UserList = (Get-PnPListItem -List $ListName -Fields "Title","SysAdmin_User_Name", "SysAdmin_User_GivenName","SysAdmin_User_Surname","SysAdmin_User_DisplayName","SysAdmin_User_Office", "SysAdmin_User_Email","SysAdmin_User_Street","SysAdmin_User_City","SysAdmin_User_State", "SysAdmin_User_PostCode","SysAdmin_User_MobilePhone","SysAdmin_User_JobTitle","SysAdmin_User_Manager","SysAdmin_User_OU","SysAdmin_User_SAM","SysAdmin_User_Created","SysAdmin_User_Groups","SysAdmin_User_Country")
 
-## Item steps through each item in the array Items
+## Create each user with a Created status of false
 foreach($User in $UserList)
 {  
     if ($User["SysAdmin_User_Created"] -eq $false)
@@ -43,19 +37,17 @@ foreach($User in $UserList)
         $GroupArray = ($User["SysAdmin_User_Groups"] -split ', ')
         Add-ADPrincipalGroupMembership $User["SysAdmin_User_SAM"] -MemberOf $GroupString  
         Write-Host "Finished creating AD user: " $User["SysAdmin_User_GivenName"] " " $User["SysAdmin_User_Surname"]""
-         ## Hey Send Email !
         #TODO: SEND EMAIL Success or Fail could use TRY commads
     }
 }  
 
-## Porvision Skype Account
+## Sync to O365
 Write-Host "Syncing new users to O365 using AAD Connect"
 Enable-PSRemoting -Force
 Invoke-Command -ComputerName SYDADFSP01 -ScriptBlock { Start-ADSyncSyncCycle -PolicyType Delta }
 Write-Host "Syncing complete"
 
-## Wait for user to be provisioned in O365
-
+## Wait for user to be provisioned in O365 this generally takes around 60 seconds
 Start-Sleep -Seconds 90
 
 ## Define credentials for Exchange Remote Mailbox Enable
@@ -84,3 +76,16 @@ foreach($User in $UserList)
     }   
 
 }
+
+## Porvision Skype Account
+
+
+############################ TO DO ############################
+
+#1. Provision Skype User.
+#2. Randomly generate password.
+#3. Add line to add personal email, flow and script.
+#4. Get watcher script to run CreateADUser.ps1 properly. At the moment it gets stuck at Sycning AAD Connect.
+#5. Update documentation
+
+############################ TO DO ############################
