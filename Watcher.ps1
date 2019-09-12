@@ -4,12 +4,13 @@ $watcher.Path = "\\SYDMON2016P01\CreateUserAD"
 $watcher.Filter = "*.*"
 $watcher.IncludeSubdirectories = $true
 $watcher.EnableRaisingEvents = $true 
+
+## Runs powershell script as an Administrator
 $action = 
 {
-
-C:\AutoCreateADUser\CreateADUser.ps1
-
+    PowerShell -NoProfile -ExecutionPolicy Unrestricted -Command "& {Start-Process PowerShell -ArgumentList '-NoProfile -ExecutionPolicy Unrestricted -File ""C:\AutoCreateADUser\CreateADUser.ps1""' -Verb RunAs}";
 }
+
 ## Defines what events are being watched
 Register-ObjectEvent $watcher "Created" -Action $action
 
