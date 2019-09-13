@@ -22,7 +22,7 @@ $SharePointCred = new-object -typename System.Management.Automation.PSCredential
 $SharePointSiteUrl = "https://sswcom.sharepoint.com/sysadmin"
 Connect-PnPOnline –Url $SharePointSiteUrl –Credentials $SharePointCred -NoTelemetry
 
-## Define credentials for Exchange Remote Mailbox Enable, also partially used with creating skype user
+## Define credentials for Exchange Remote Mailbox Enable as well as skype provisioning 
 $ExchangeServer = "SYDEXCH2016P01"
 $SkypeExchUsername = “SRV_CreateADUser@ssw.com.au”
 $SkypeExchPasswordContent = cat "C:\AutoCreateADUser\PasswordExchange.txt"
@@ -88,6 +88,8 @@ foreach($User in $UserList)
         Remove-PSSession $Session
         LogWrite "Completed creating skype profile"
         
+        ## TRY/CATCH then email on success/fail
+
     }
 }  
 
@@ -96,6 +98,7 @@ foreach($User in $UserList)
 #1. Provision Skype User. 
     # DONE
 #2. Randomly generate password. (10min characters, not contain user account name or parts of user's full name that exceed two characters, Containt three of: A-Z, a-z, 0-9, !$#%)
+    # NOT DONE I tested changing your password through the O365 portal and this works, we should add a learning item for this
 #3. Add line to add personal email, flow and script.
     # DONE
 #4. Add a nill access user, just has O365 applied
