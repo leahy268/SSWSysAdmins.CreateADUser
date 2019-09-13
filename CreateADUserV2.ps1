@@ -48,7 +48,7 @@ foreach($User in $UserList)
 
     if ($User["SysAdmin_User_Created"] -eq $false)
     {
-        
+
         LogWrite "Creating User in AD: " $User["SysAdmin_User_GivenName"] " " $User["SysAdmin_User_Surname"]""
         New-ADUser -Name $User["SysAdmin_User_Name"] -GivenName $User["SysAdmin_User_GivenName"] -Surname $User["SysAdmin_User_Surname"] -Description $User["SysAdmin_User_JobTitle"] -DisplayName $User["SysAdmin_User_DisplayName"] -Office $User["SysAdmin_User_Office"] -EmailAddress $User["SysAdmin_User_Email"] -StreetAddress $User["SysAdmin_User_Street"] -City $User["SysAdmin_User_City"] -State $User["SysAdmin_User_State"] -PostalCode $User["SysAdmin_User_PostCode"] -MobilePhone $User["SysAdmin_User_MobilePhone"] -Title $User["SysAdmin_User_JobTitle"] -Manager $User["SysAdmin_User_Manager"] -SamAccountName $User_SAM -Path $User["SysAdmin_User_OU"]  -UserPrincipalName $User["Title"] -Company "SSW" -Country $User["SysAdmin_User_Country"]
         ## Had to initiate this after creating user, otherwise I was recieving errors
@@ -62,17 +62,17 @@ foreach($User in $UserList)
         Add-ADPrincipalGroupMembership $User_SAM -MemberOf $GroupString  
         LogWrite "Finished creating AD user: " $User["SysAdmin_User_GivenName"] " " $User["SysAdmin_User_Surname"]""
         
-        ## Sync to O365
+        ## Sync to O365 through AAD Connect
         LogWrite "Syncing new users to O365 using AAD Connect"
         Enable-PSRemoting -Force
         Invoke-Command -ComputerName SYDADFSP01 -ScriptBlock { Start-ADSyncSyncCycle -PolicyType Delta }
         LogWrite "Syncing complete"
 
         ## Wait for user to be provisioned in O365 this generally takes around 60 seconds
-        ## TO DO add a While command so that I can determine with true value if the user is provisioned before moving one, instead of based on time
+        ## TO DO add a While command so that I can determine with true value if the user is provisioned before moving one, instead of based on time, need to add O365 commands here, user cannot be MFA enabled
         Start-Sleep -Seconds 90
         
-        ## Provison remote mailbox
+        ## Provison remote mailbox on eonpremises Exchange server, if this is not needed comment out section
         LogWrite "Enabling Remote Mailbox: " $User["SysAdmin_User_GivenName"] " " $User["SysAdmin_User_Surname"]""
         Import-PSSession $Session
         Enable-RemoteMailbox -Identity $User_SAM+'@ssw.com.au' -RemoteRoutingAddress $User_SAM'@sswcom.onmicrosoft.com'
@@ -81,7 +81,7 @@ foreach($User in $UserList)
         Remove-PSSession $Session
         LogWrite "Completed enabling remote mailbox"
 
-        ## Provision Skype User
+        ## Provision Skype User, this just provisions pc-to-pc comms, no site or # is added
         LogWrite "Creating Skype Profile for: " $User["SysAdmin_User_GivenName"] " " $User["SysAdmin_User_Surname"]""
         Import-PSSession $Session
         Enable-CsUser -Identity $User_SAM -RegistrarPool "SydLync2013P01.sydney.ssw.com.au" -SipAddressType SamAccountName -SipDomain ssw.com.au
