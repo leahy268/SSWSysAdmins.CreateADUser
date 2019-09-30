@@ -40,6 +40,9 @@ foreach($User in $UserList)
     $User_SAM = $User["SysAdmin_User_SAM"]
     $Firstname = $User["SysAdmin_User_GivenName"]
     $Surname = $User["SysAdmin_User_Surname"]
+    $Username = $User["SysAdmin_User_Name"]+$User["SysAdmin_User_Surname"]
+    $Email = $User["Title"]
+    $Mobile = $User["SysAdmin_User_MobilePhone"]
     
         try{
         LogWrite "Creating User in AD: " $User["SysAdmin_User_GivenName"] " " $User["SysAdmin_User_Surname"]""
@@ -58,7 +61,23 @@ foreach($User in $UserList)
         catch{
         $UserCreation = "User Creation has failed, please check all inputs are correct."
         LogWrite "User Creation has failed, please check all inputs are correct."
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "sswsysadmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body "Please check log file on SSW-DC4 C:\AutoCreateADUser\Log.txt" -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+         
+        $bodyhtml =  "<div style='font-family:Calibri;'>"
+        $bodyhtml += "</H3>"
+        $bodyhtml += "<p>There was an issue creating a new user.</p>"
+        
+        $bodyhtml += "<b>Firstname:</b> $Firstname<br>"
+        $bodyhtml += "<b>Surname:</b> $Surname<br>"
+
+        $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
+        $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/BlacklistChecker> ADJUST TO GITHUB </a><br>"
+        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EY-FBWPIsolKn0_x_5XXl7YBc9KyoHalLZA6Mfk9cQlqGQ?e=vtZFJb> ADJUST TO DOCUMENTATION </a></p>"
+        $bodyhtml += "<p></p>"
+        $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
+        
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "stevenandrews@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+
         break
         }
 
@@ -77,7 +96,23 @@ foreach($User in $UserList)
         catch{
         $UserSync = "User sync has failed."
         LogWrite "User sync has failed."
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "sswsysadmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body "Please check log file on SSW-DC4 C:\AutoCreateADUser\Log.txt" -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+       
+        $bodyhtml =  "<div style='font-family:Calibri;'>"
+        $bodyhtml += "</H3>"
+        $bodyhtml += "<p>There was an issue creating a new user.</p>"
+        
+        $bodyhtml += "<b>Firstname:</b> $Firstname<br>"
+        $bodyhtml += "<b>Surname:</b> $Surname<br>"
+
+        $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
+        $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/BlacklistChecker> ADJUST TO GITHUB </a><br>"
+        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EY-FBWPIsolKn0_x_5XXl7YBc9KyoHalLZA6Mfk9cQlqGQ?e=vtZFJb> ADJUST TO DOCUMENTATION </a></p>"
+        $bodyhtml += "<p></p>"
+        $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
+        
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "stevenandrews@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+
         break
         }
 
@@ -102,7 +137,24 @@ foreach($User in $UserList)
         catch{
         $UserRemoteMail = "User enable remote mailbox has failed, please check user has synced to O365."
         LogWrite "User enable remote mailbox has failed, please check user has synced to O365."
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "sswsysadmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body "Please check log file on SSW-DC4 C:\AutoCreateADUser\Log.txt" -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+               
+        $bodyhtml =  "<div style='font-family:Calibri;'>"
+        $bodyhtml += "</H3>"
+        $bodyhtml += "<p>There was an issue creating a new user.</p>"
+        
+        $bodyhtml += "<b>Firstname:</b> $Firstname<br>"
+        $bodyhtml += "<b>Surname:</b> $Surname<br>"
+
+        $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
+        $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/BlacklistChecker> ADJUST TO GITHUB </a><br>"
+        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EY-FBWPIsolKn0_x_5XXl7YBc9KyoHalLZA6Mfk9cQlqGQ?e=vtZFJb> ADJUST TO DOCUMENTATION </a></p>"
+        $bodyhtml += "<p></p>"
+        $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
+        
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "stevenandrews@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+
+        break
         }
 
         ## Define credentials for Skype User Creation
@@ -120,17 +172,27 @@ foreach($User in $UserList)
         catch{
         $UserRemoteMail = "Enabling user for Skype has failed."
         LogWrite "Enabling user for Skype has failed."
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "sswsysadmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body "Please check log file on SSW-DC4 C:\AutoCreateADUser\Log.txt" -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+               
+        $bodyhtml =  "<div style='font-family:Calibri;'>"
+        $bodyhtml += "</H3>"
+        $bodyhtml += "<p>There was an issue creating a new user.</p>"
+        
+        $bodyhtml += "<b>Firstname:</b> $Firstname<br>"
+        $bodyhtml += "<b>Surname:</b> $Surname<br>"
+
+        $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
+        $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/BlacklistChecker> ADJUST TO GITHUB </a><br>"
+        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EY-FBWPIsolKn0_x_5XXl7YBc9KyoHalLZA6Mfk9cQlqGQ?e=vtZFJb> ADJUST TO DOCUMENTATION </a></p>"
+        $bodyhtml += "<p></p>"
+        $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
+        
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "stevenandrews@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+        
         break
         }
 
         ## Send Email
-        $Firstname = $User["SysAdmin_User_Name"]
-        $Surname = $User["SysAdmin_User_Surname"]
-        $Username = $User["SysAdmin_User_Name"]+$User["SysAdmin_User_Surname"]
-        $Email = $User["Title"]
-        $Mobile = $User["SysAdmin_User_MobilePhone"]
-
         $bodyhtml =  "<div style='font-family:Calibri;'>"
         $bodyhtml += "</H3>"
         $bodyhtml += "<p>We just created a new AD user.</p>"
@@ -148,32 +210,8 @@ foreach($User in $UserList)
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
 
-        
-        # Let's send an email for funsies if the number of IPs are greater than 0
         Send-MailMessage -from "sswserverevents@ssw.com.au" -to "stevenandrews@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
 
 
     }
 }  
-
-############################ TO DO ############################
-
-#1. Provision Skype User. 
-    # DONE
-#2. Randomly generate password. (10min characters, not contain user account name or parts of user's full name that exceed two characters, Containt three of: A-Z, a-z, 0-9, !$#%)
-    # NOT DONE THIS WILL BE A SUGARLEARNING STEP TO CHANGE
-#3. Add line to add personal email, flow and script.
-    # DONE
-#4. Add a nill access user, just has O365 applied
-    # DONE
-#5. Get watcher script to run CreateADUser.ps1 properly. At the moment it gets stuck at Sycning AAD Connect. 
-    # DONE
-#6. Update documentation
-#7. Update SharePoint username to SP_SVC
-    # DONE
-#8. Log file to capture all output
-    # DONE
-#9. Send Email
-    #DONE
-
-############################ TO DO ############################
