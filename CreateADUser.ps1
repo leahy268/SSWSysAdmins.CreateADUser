@@ -11,7 +11,7 @@ Function LogWrite
    Write-Host $Line
 }
 
-$Logfile = "\\fileserver\Backups\SSW.CreateUserAD\Log.txt"
+$Logfile = "C:\AutoCreateADUser\Log.txt"
 LogWrite "Auto Create User Log Started"
 
 ## Define credentials and login to SharePoint with PnPOnline
@@ -40,7 +40,7 @@ foreach($User in $UserList)
     $User_SAM = $User["SysAdmin_User_SAM"]
     $Firstname = $User["SysAdmin_User_GivenName"]
     $Surname = $User["SysAdmin_User_Surname"]
-    $Pre2000 = $User["SysAdmin_User_Name"]+$User["SysAdmin_User_Surname"] -replace '[^a-zA-Z0-9]', ''
+    $Pre2000 = $User["SysAdmin_User_GivenName"]+$User["SysAdmin_User_Surname"] -replace '[^a-zA-Z0-9]', ''
     $Username = $Pre2000.substring(0, [System.Math]::Min(20, $Pre2000.Length))
     $Email = $User["Title"]
     $Mobile = $User["SysAdmin_User_MobilePhone"]
@@ -72,12 +72,12 @@ foreach($User in $UserList)
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
         $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser GitHub </a><br>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/BlacklistChecker> ADJUST TO GITHUB </a><br>"
         $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EY-FBWPIsolKn0_x_5XXl7YBc9KyoHalLZA6Mfk9cQlqGQ?e=vtZFJb> ADJUST TO DOCUMENTATION </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "stevenandrews@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
 
         break
         }
@@ -107,12 +107,12 @@ foreach($User in $UserList)
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
         $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser GitHub </a><br>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/BlacklistChecker> ADJUST TO GITHUB </a><br>"
         $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EY-FBWPIsolKn0_x_5XXl7YBc9KyoHalLZA6Mfk9cQlqGQ?e=vtZFJb> ADJUST TO DOCUMENTATION </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "stevenandrews@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
 
         break
         }
@@ -148,12 +148,12 @@ foreach($User in $UserList)
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
         $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser GitHub </a><br>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/BlacklistChecker> ADJUST TO GITHUB </a><br>"
         $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EY-FBWPIsolKn0_x_5XXl7YBc9KyoHalLZA6Mfk9cQlqGQ?e=vtZFJb> ADJUST TO DOCUMENTATION </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "stevenandrews@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
 
         break
         }
@@ -183,12 +183,12 @@ foreach($User in $UserList)
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
         $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser GitHub </a><br>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/BlacklistChecker> ADJUST TO GITHUB </a><br>"
         $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EY-FBWPIsolKn0_x_5XXl7YBc9KyoHalLZA6Mfk9cQlqGQ?e=vtZFJb> ADJUST TO DOCUMENTATION </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "stevenandrews@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
         
         break
         }
@@ -206,12 +206,12 @@ foreach($User in $UserList)
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
         $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser GitHub </a><br>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/BlacklistChecker> ADJUST TO GITHUB </a><br>"
         $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EY-FBWPIsolKn0_x_5XXl7YBc9KyoHalLZA6Mfk9cQlqGQ?e=vtZFJb> ADJUST TO DOCUMENTATION </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
 
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "stevenandrews@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
 
 
     }
