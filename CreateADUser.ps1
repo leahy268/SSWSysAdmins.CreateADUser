@@ -1,4 +1,4 @@
-## Consolidated and fixed errors in previous script
+## Install PnPOline on user that will be running server: https://github.com/SharePoint/pnp-powershell/releases
 
 ## Let's create a log so we can see what is happening
 Function LogWrite
