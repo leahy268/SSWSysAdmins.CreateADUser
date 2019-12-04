@@ -72,8 +72,8 @@ foreach($User in $UserList)
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
         $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/BlacklistChecker> ADJUST TO GITHUB </a><br>"
-        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EY-FBWPIsolKn0_x_5XXl7YBc9KyoHalLZA6Mfk9cQlqGQ?e=vtZFJb> ADJUST TO DOCUMENTATION </a></p>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
+        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
@@ -107,8 +107,8 @@ foreach($User in $UserList)
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
         $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/BlacklistChecker> ADJUST TO GITHUB </a><br>"
-        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EY-FBWPIsolKn0_x_5XXl7YBc9KyoHalLZA6Mfk9cQlqGQ?e=vtZFJb> ADJUST TO DOCUMENTATION </a></p>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
+        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
@@ -148,8 +148,8 @@ foreach($User in $UserList)
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
         $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/BlacklistChecker> ADJUST TO GITHUB </a><br>"
-        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EY-FBWPIsolKn0_x_5XXl7YBc9KyoHalLZA6Mfk9cQlqGQ?e=vtZFJb> ADJUST TO DOCUMENTATION </a></p>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
+        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
@@ -183,8 +183,8 @@ foreach($User in $UserList)
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
         $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/BlacklistChecker> ADJUST TO GITHUB </a><br>"
-        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EY-FBWPIsolKn0_x_5XXl7YBc9KyoHalLZA6Mfk9cQlqGQ?e=vtZFJb> ADJUST TO DOCUMENTATION </a></p>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
+        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
@@ -206,8 +206,8 @@ foreach($User in $UserList)
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
         $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/BlacklistChecker> ADJUST TO GITHUB </a><br>"
-        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EY-FBWPIsolKn0_x_5XXl7YBc9KyoHalLZA6Mfk9cQlqGQ?e=vtZFJb> ADJUST TO DOCUMENTATION </a></p>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
+        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
 
