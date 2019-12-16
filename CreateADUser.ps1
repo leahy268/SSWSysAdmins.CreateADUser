@@ -65,7 +65,7 @@ foreach($User in $UserList)
          
         $bodyhtml =  "<div style='font-family:Calibri;'>"
         $bodyhtml += "</H3>"
-        $bodyhtml += "<p>There was an issue creating a new user.</p>"
+        $bodyhtml += "<p>There was an issue creating a new user, at the AD User Creation phase.</p>"
         
         $bodyhtml += "<b>Firstname:</b> $Firstname<br>"
         $bodyhtml += "<b>Surname:</b> $Surname<br>"
@@ -100,7 +100,7 @@ foreach($User in $UserList)
        
         $bodyhtml =  "<div style='font-family:Calibri;'>"
         $bodyhtml += "</H3>"
-        $bodyhtml += "<p>There was an issue creating a new user.</p>"
+        $bodyhtml += "<p>There was an issue creating a new user, at the O365 sync stage.</p>"
         
         $bodyhtml += "<b>Firstname:</b> $Firstname<br>"
         $bodyhtml += "<b>Surname:</b> $Surname<br>"
@@ -141,7 +141,7 @@ foreach($User in $UserList)
                
         $bodyhtml =  "<div style='font-family:Calibri;'>"
         $bodyhtml += "</H3>"
-        $bodyhtml += "<p>There was an issue creating a new user.</p>"
+        $bodyhtml += "<p>There was an issue creating a new user, at the enable remote mailbox phase.</p>"
         
         $bodyhtml += "<b>Firstname:</b> $Firstname<br>"
         $bodyhtml += "<b>Surname:</b> $Surname<br>"
@@ -176,7 +176,34 @@ foreach($User in $UserList)
                
         $bodyhtml =  "<div style='font-family:Calibri;'>"
         $bodyhtml += "</H3>"
-        $bodyhtml += "<p>There was an issue creating a new user.</p>"
+        $bodyhtml += "<p>There was an issue creating a new user, at the enable skype user phase.</p>"
+        
+        $bodyhtml += "<b>Firstname:</b> $Firstname<br>"
+        $bodyhtml += "<b>Surname:</b> $Surname<br>"
+
+        $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
+        $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
+        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
+        $bodyhtml += "<p></p>"
+        $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
+        
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+        
+        break
+        }
+
+        try{
+        ## Change SysAdmin_User_Created Boolean to $true
+		Set-PnPListItem -List "New AD User" -Identity $User["ID"] -Values @{"SysAdmin_User_Created" = $true}
+        }
+        catch{
+        $UserRemoteMail = "Changing SysAdmin_User_Created Boolean to true has failed."
+        LogWrite "Changing SysAdmin_User_Created Boolean to true has failed."
+               
+        $bodyhtml =  "<div style='font-family:Calibri;'>"
+        $bodyhtml += "</H3>"
+        $bodyhtml += "<p>There was an issue creating a new user, Changing SysAdmin_User_Created Boolean to true has failed phase.</p>"
         
         $bodyhtml += "<b>Firstname:</b> $Firstname<br>"
         $bodyhtml += "<b>Surname:</b> $Surname<br>"
