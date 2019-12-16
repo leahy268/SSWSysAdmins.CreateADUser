@@ -11,7 +11,7 @@ Automatically create AD User on premises.
   >2. Forces AD Sync to AAD
   >3. Enables Remote Mailbox
   >4. Creates Skype Account
-  >5. Sends email on completion
-5. Flow runs every 15minutes to check if user has been created and marks user as created in SharePoin list
-
-Licenses in Azure are assigned automatically.
+  >5. Updates SharePoint SysAdmin_User_Created to $true
+  >6. Sends email on completion
+5. AAD Connect assigns a location using AD Attribute 'c'
+6. O365 Licenses assigned automatically
