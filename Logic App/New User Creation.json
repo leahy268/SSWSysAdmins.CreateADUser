@@ -1,0 +1,783 @@
+{
+  "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "actions": {
+      "Add_to_New_AD_User_SharePoint_List": {
+        "actions": {
+          "Condition": {
+            "actions": {
+              "Add_User_to_New_User_AD_SharePoint_List_2": {
+                "inputs": {
+                  "body": {
+                    "SysAdmin_User_AltEmail": "@body('Get_response_details')?['rc935ef4c66574693aa3a1d3f75708eef']",
+                    "SysAdmin_User_City": "@body('Get_response_details')?['r0e61a90516174ebb89d6125d4022ce3f']",
+                    "SysAdmin_User_Country": "@body('Get_response_details')?['r204eaeadf0194270a055ae0c28b427eb']",
+                    "SysAdmin_User_Created": false,
+                    "SysAdmin_User_DisplayName": "@{body('Get_response_details')?['r395c3778c03042308d21436c7561373d']} @{body('Get_response_details')?['re03214c6144645a2b8d4628a841efd63']} www.ssw.com.au",
+                    "SysAdmin_User_Email": "@{body('Get_response_details')?['r395c3778c03042308d21436c7561373d']}@{body('Get_response_details')?['re03214c6144645a2b8d4628a841efd63']}@ssw.com.au",
+                    "SysAdmin_User_GivenName": "@body('Get_response_details')?['r395c3778c03042308d21436c7561373d']",
+                    "SysAdmin_User_Groups": "@{variables('MemberOf')}, @{variables('LocationMember')}",
+                    "SysAdmin_User_JobTitle": "@body('Get_response_details')?['rc545b86667ed4803a3b20dbbfed93859']",
+                    "SysAdmin_User_Manager": "@variables('Manager')",
+                    "SysAdmin_User_MobilePhone": "@body('Get_response_details')?['rd13543e25de9412eaedee14de56ae979']",
+                    "SysAdmin_User_Name": "@{body('Get_response_details')?['r395c3778c03042308d21436c7561373d']} @{body('Get_response_details')?['re03214c6144645a2b8d4628a841efd63']}",
+                    "SysAdmin_User_OU": "@variables('OU')",
+                    "SysAdmin_User_Office": "@body('Get_response_details')?['r69b191771fd54084852ef8bf6439a8ec']",
+                    "SysAdmin_User_PostCode": "@body('Get_response_details')?['r5b7e3a5613c14ac1b7d737087455df85']",
+                    "SysAdmin_User_SAM": "@{body('Get_response_details')?['r395c3778c03042308d21436c7561373d']}@{body('Get_response_details')?['re03214c6144645a2b8d4628a841efd63']}",
+                    "SysAdmin_User_State": "@body('Get_response_details')?['rec80a3ddb40d4c16b2435589535af432']",
+                    "SysAdmin_User_Street": "@body('Get_response_details')?['r6845b7f2af70446b8451a7b524cc0cba']",
+                    "SysAdmin_User_Surname": "@body('Get_response_details')?['re03214c6144645a2b8d4628a841efd63']",
+                    "Title": "@{body('Get_response_details')?['r395c3778c03042308d21436c7561373d']}@{body('Get_response_details')?['re03214c6144645a2b8d4628a841efd63']}@ssw.com.au"
+                  },
+                  "host": {
+                    "connection": {
+                      "name": "@parameters('$connections')['sharepointonline']['connectionId']"
+                    }
+                  },
+                  "method": "post",
+                  "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://sswcom.sharepoint.com/SysAdmin'))}/tables/@{encodeURIComponent(encodeURIComponent('f600712b-2081-47c7-98f9-2f96d72a1dde'))}/items"
+                },
+                "metadata": {
+                  "flowSystemMetadata": {
+                    "swaggerOperationId": "PostItem"
+                  }
+                },
+                "runAfter": {},
+                "type": "ApiConnection"
+              }
+            },
+            "else": {
+              "actions": {
+                "Add_User_to_New_User_AD_SharePoint_List_3": {
+                  "inputs": {
+                    "body": {
+                      "SysAdmin_User_AltEmail": "@body('Get_response_details')?['rc935ef4c66574693aa3a1d3f75708eef']",
+                      "SysAdmin_User_City": "@body('Get_response_details')?['r0e61a90516174ebb89d6125d4022ce3f']",
+                      "SysAdmin_User_Country": "@body('Get_response_details')?['r204eaeadf0194270a055ae0c28b427eb']",
+                      "SysAdmin_User_Created": false,
+                      "SysAdmin_User_DisplayName": "@{body('Get_response_details')?['r395c3778c03042308d21436c7561373d']} @{body('Get_response_details')?['re03214c6144645a2b8d4628a841efd63']} www.ssw.com.au",
+                      "SysAdmin_User_Email": "@{body('Get_response_details')?['r395c3778c03042308d21436c7561373d']}@{body('Get_response_details')?['re03214c6144645a2b8d4628a841efd63']}@{variables('Counter')}@ssw.com.au",
+                      "SysAdmin_User_GivenName": "@body('Get_response_details')?['r395c3778c03042308d21436c7561373d']",
+                      "SysAdmin_User_Groups": "@{variables('MemberOf')}, @{variables('LocationMember')}",
+                      "SysAdmin_User_JobTitle": "@body('Get_response_details')?['rc545b86667ed4803a3b20dbbfed93859']",
+                      "SysAdmin_User_Manager": "@variables('Manager')",
+                      "SysAdmin_User_MobilePhone": "@body('Get_response_details')?['rd13543e25de9412eaedee14de56ae979']",
+                      "SysAdmin_User_Name": "@{body('Get_response_details')?['r395c3778c03042308d21436c7561373d']} @{body('Get_response_details')?['re03214c6144645a2b8d4628a841efd63']}",
+                      "SysAdmin_User_OU": "@variables('OU')",
+                      "SysAdmin_User_Office": "SSW @{body('Get_response_details')?['r69b191771fd54084852ef8bf6439a8ec']}",
+                      "SysAdmin_User_PostCode": "@body('Get_response_details')?['r5b7e3a5613c14ac1b7d737087455df85']",
+                      "SysAdmin_User_SAM": "@{body('Get_response_details')?['r395c3778c03042308d21436c7561373d']}@{body('Get_response_details')?['re03214c6144645a2b8d4628a841efd63']}@{variables('Counter')}",
+                      "SysAdmin_User_State": "@body('Get_response_details')?['rec80a3ddb40d4c16b2435589535af432']",
+                      "SysAdmin_User_Street": "@body('Get_response_details')?['r6845b7f2af70446b8451a7b524cc0cba']",
+                      "SysAdmin_User_Surname": "@body('Get_response_details')?['re03214c6144645a2b8d4628a841efd63']",
+                      "Title": "@{body('Get_response_details')?['r395c3778c03042308d21436c7561373d']}@{body('Get_response_details')?['re03214c6144645a2b8d4628a841efd63']}@{variables('Counter')}@ssw.com.au"
+                    },
+                    "host": {
+                      "connection": {
+                        "name": "@parameters('$connections')['sharepointonline']['connectionId']"
+                      }
+                    },
+                    "method": "post",
+                    "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://sswcom.sharepoint.com/SysAdmin'))}/tables/@{encodeURIComponent(encodeURIComponent('f600712b-2081-47c7-98f9-2f96d72a1dde'))}/items"
+                  },
+                  "metadata": {
+                    "flowSystemMetadata": {
+                      "swaggerOperationId": "PostItem"
+                    }
+                  },
+                  "runAfter": {},
+                  "type": "ApiConnection"
+                }
+              }
+            },
+            "expression": {
+              "equals": [
+                "@variables('Counter')",
+                0
+              ]
+            },
+            "runAfter": {
+              "Group_Switch": [
+                "Succeeded"
+              ]
+            },
+            "type": "If"
+          },
+          "Get_response_details": {
+            "inputs": {
+              "host": {
+                "connection": {
+                  "name": "@parameters('$connections')['microsoftforms']['connectionId']"
+                }
+              },
+              "method": "get",
+              "path": "/formapi/api/forms('@{encodeURIComponent('NHwvrDW56Uir3BHl1PyysOkoSIvscVRFgUJzIBzDA7NUQkEwUURYVDQ2UUxBS0ZWT1NDSzkzUEtUWC4u')}')/responses",
+              "queries": {
+                "response_id": "@items('Add_to_New_AD_User_SharePoint_List')?['resourceData']?['responseId']"
+              }
+            },
+            "metadata": {
+              "flowSystemMetadata": {
+                "swaggerOperationId": "GetFormResponseById"
+              }
+            },
+            "runAfter": {},
+            "type": "ApiConnection"
+          },
+          "Group_Switch": {
+            "cases": {
+              "Accounting": {
+                "actions": {
+                  "Set_Accounting": {
+                    "inputs": {
+                      "name": "MemberOf",
+                      "value": "CN=SSWAdmin,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=InternetOrders,OU=Mailboxes,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWAccounts,OU=Mailboxes,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWAdmin,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWAzure,OU=Mailboxes,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWDomains,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWInternet,OU=Mailboxes,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWManagement,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWOffice365,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Accounting"
+              },
+              "Admin": {
+                "actions": {
+                  "Set_Admin": {
+                    "inputs": {
+                      "name": "MemberOf",
+                      "value": "CN=SSWAdmin,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWContactUs,OU=Mailboxes,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWOffice365,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=AngularHackDay,OU=Mailboxes,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au, CN=FireBootCamp,OU=Mailboxes,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au, CN=Google,OU=Mailboxes,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWSocialMedia,OU=Mailboxes,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Admin"
+              },
+              "Case": {
+                "actions": {
+                  "Set_Undefined": {
+                    "inputs": {
+                      "name": "MemberOf",
+                      "value": "CN=SSWOffice365,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Other (No access just SSWOffice365)"
+              },
+              "Designers": {
+                "actions": {
+                  "Set_Designers": {
+                    "inputs": {
+                      "name": "MemberOf",
+                      "value": "CN=SSWDesigners,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWOffice365,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Designers"
+              },
+              "Designers_-_SSWTV": {
+                "actions": {
+                  "Set_Designers_-_SSWTV": {
+                    "inputs": {
+                      "name": "MemberOf",
+                      "value": "CN=SSWDesigners,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWTV,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWOffice365,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Designers - SSWTV"
+              },
+              "Developers": {
+                "actions": {
+                  "Set_Developers": {
+                    "inputs": {
+                      "name": "MemberOf",
+                      "value": "CN=SSWDevelopers,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWOffice365,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Developers"
+              },
+              "Manager": {
+                "actions": {
+                  "Set_Manager": {
+                    "inputs": {
+                      "name": "MemberOf",
+                      "value": "CN=SSWAdmin,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWContactUs,OU=Mailboxes,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWDevelopers,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWOffice365,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWManagement,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Manager"
+              },
+              "SysAdmin": {
+                "actions": {
+                  "Set_SysAdmin": {
+                    "inputs": {
+                      "name": "MemberOf",
+                      "value": "CN=Exchange Services,CN=Users,DC=sydney,DC=ssw,DC=com,DC=au, CN=postmaster,OU=Mailboxes,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWBeijing-MSDN,OU=Mailboxes,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWDevelopers,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWDomains,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWInternet,OU=Mailboxes,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWNetworkAdmin,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWOffice365,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWOperationsManager,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWServerEvents,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWSharePoint,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au, CN=SSWSysAdmins,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "SysAdmin"
+              }
+            },
+            "default": {
+              "actions": {}
+            },
+            "expression": "@body('Get_response_details')?['r73798fddf4ae46548f00407dd4321ed1']",
+            "runAfter": {
+              "OU_Switch": [
+                "Succeeded"
+              ]
+            },
+            "type": "Switch"
+          },
+          "Location_OU": {
+            "cases": {
+              "Brisbane": {
+                "actions": {
+                  "Set_Brisbane": {
+                    "inputs": {
+                      "name": "LocationMember",
+                      "value": "CN=SSWBrisbaneAll,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Brisbane"
+              },
+              "Hangzhou": {
+                "actions": {
+                  "Set_Hangzhou": {
+                    "inputs": {
+                      "name": "LocationMember",
+                      "value": "CN=SSWChinaAll,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Hangzhou"
+              },
+              "Melbourne": {
+                "actions": {
+                  "Set_Melbourne": {
+                    "inputs": {
+                      "name": "LocationMember",
+                      "value": "CN=SSWMelbourneAll,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Melbourne"
+              },
+              "Other": {
+                "actions": {
+                  "Set_Other": {
+                    "inputs": {
+                      "name": "LocationMember",
+                      "value": "CN=SSWRestOfWorldAll,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Other"
+              },
+              "Sydney": {
+                "actions": {
+                  "Set_Sydney": {
+                    "inputs": {
+                      "name": "LocationMember",
+                      "value": "CN=SSWSydneyAll,OU=Security Group,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Sydney"
+              }
+            },
+            "default": {
+              "actions": {}
+            },
+            "expression": "@body('Get_response_details')?['r69b191771fd54084852ef8bf6439a8ec']",
+            "runAfter": {
+              "Manager_Switch": [
+                "Succeeded"
+              ]
+            },
+            "type": "Switch"
+          },
+          "Manager_Switch": {
+            "cases": {
+              "Adam_Cogan": {
+                "actions": {
+                  "Set_Adam_Cogan": {
+                    "inputs": {
+                      "name": "Manager",
+                      "value": "CN=Adam Cogan,OU=Australia,OU=NonAdminAccounts,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Adam Cogan"
+              },
+              "Alvin_Shen": {
+                "actions": {
+                  "Set_Alvin_Shen": {
+                    "inputs": {
+                      "name": "Manager",
+                      "value": "CN=Alvin Shen,OU=China,OU=NonAdminAccounts,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Alvin Shen"
+              },
+              "Matthew_Sampias": {
+                "actions": {
+                  "Set_Matthew_Sampias": {
+                    "inputs": {
+                      "name": "Manager",
+                      "value": "CN=Matthew Sampias,OU=Australia,OU=NonAdminAccounts,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Matthew Sampias"
+              },
+              "Mehmet_Ozdemir": {
+                "actions": {
+                  "Set_Mehmet_Ozdemir": {
+                    "inputs": {
+                      "name": "Manager",
+                      "value": "CN=Mehmet Ozdemir,OU=Australia,OU=NonAdminAccounts,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Mehmet Ozdemir"
+              },
+              "Michael_Smedley": {
+                "actions": {
+                  "Set_Michael_Smedley": {
+                    "inputs": {
+                      "name": "Manager",
+                      "value": "CN=Michael Smedley,OU=Australia,OU=NonAdminAccounts,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Michael Smedley"
+              },
+              "Uly_Maclaren": {
+                "actions": {
+                  "Set_Uly_Maclaren": {
+                    "inputs": {
+                      "name": "Manager",
+                      "value": "CN=Ulysses Maclaren,OU=Australia,OU=NonAdminAccounts,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Ulysses Maclaren"
+              }
+            },
+            "default": {
+              "actions": {}
+            },
+            "expression": "@body('Get_response_details')?['r1806902a038649cb8ccd5c0695d3d449']",
+            "runAfter": {
+              "Get_response_details": [
+                "Succeeded"
+              ]
+            },
+            "type": "Switch"
+          },
+          "OU_Switch": {
+            "cases": {
+              "Australia": {
+                "actions": {
+                  "Set_Australia": {
+                    "inputs": {
+                      "name": "OU",
+                      "value": "OU=Australia,OU=NonAdminAccounts,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Australia"
+              },
+              "Australia_-_External_Consultant": {
+                "actions": {
+                  "Set_Australia_-_External_Consultant": {
+                    "inputs": {
+                      "name": "OU",
+                      "value": "OU=External Consultant,OU=Australia,OU=NonAdminAccounts,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Australia - External Consultant"
+              },
+              "Australia_-_Work_Experience": {
+                "actions": {
+                  "Set_Australia_-_Work_Experience": {
+                    "inputs": {
+                      "name": "OU",
+                      "value": "OU=Work Experience,OU=Australia,OU=NonAdminAccounts,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "Australia - Work Experience"
+              },
+              "China": {
+                "actions": {
+                  "Set_China": {
+                    "inputs": {
+                      "name": "OU",
+                      "value": "OU=China,OU=NonAdminAccounts,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "China"
+              },
+              "China_-_External_Consultant": {
+                "actions": {
+                  "Set_China_-_External_Consultant": {
+                    "inputs": {
+                      "name": "OU",
+                      "value": "OU=External Consultant,OU=China,OU=NonAdminAccounts,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "China - External Consultant"
+              },
+              "China_-_Work_Experience": {
+                "actions": {
+                  "Set_China_-_Work_Experience": {
+                    "inputs": {
+                      "name": "OU",
+                      "value": "OU=Work Experience,OU=China,OU=NonAdminAccounts,OU=SSW,DC=sydney,DC=ssw,DC=com,DC=au"
+                    },
+                    "runAfter": {},
+                    "type": "SetVariable"
+                  }
+                },
+                "case": "China - Work Experience"
+              }
+            },
+            "default": {
+              "actions": {}
+            },
+            "expression": "@body('Get_response_details')?['rcc563d0c3e4c44a48e1c2534a5f0626f']",
+            "runAfter": {
+              "Location_OU": [
+                "Succeeded"
+              ]
+            },
+            "type": "Switch"
+          }
+        },
+        "foreach": "@triggerBody()?['value']",
+        "runAfter": {
+          "Loop_Through_Users": [
+            "Succeeded"
+          ]
+        },
+        "type": "Foreach"
+      },
+      "Counter": {
+        "inputs": {
+          "variables": [
+            {
+              "name": "Counter",
+              "type": "Integer"
+            }
+          ]
+        },
+        "runAfter": {},
+        "type": "InitializeVariable"
+      },
+      "Create_file": {
+        "inputs": {
+          "body": "Triggers user creation on SSW-DC4.",
+          "host": {
+            "connection": {
+              "name": "@parameters('$connections')['filesystem']['connectionId']"
+            }
+          },
+          "method": "post",
+          "path": "/datasets/default/files",
+          "queries": {
+            "folderPath": "\\",
+            "name": "CreateUserTrigger.txt",
+            "queryParametersSingleEncoded": true
+          }
+        },
+        "runAfter": {
+          "Add_to_New_AD_User_SharePoint_List": [
+            "Succeeded"
+          ]
+        },
+        "type": "ApiConnection"
+      },
+      "Delete_file": {
+        "inputs": {
+          "host": {
+            "connection": {
+              "name": "@parameters('$connections')['filesystem']['connectionId']"
+            }
+          },
+          "method": "delete",
+          "path": "/datasets/default/files/@{encodeURIComponent(encodeURIComponent('CreateUserTrigger.txt'))}"
+        },
+        "runAfter": {
+          "Create_file": [
+            "Succeeded"
+          ]
+        },
+        "type": "ApiConnection"
+      },
+      "Get_Azure_Users": {
+        "inputs": {
+          "authentication": {
+            "audience": "https://graph.microsoft.com/",
+            "clientId": "003dbb0d-f7ad-4109-9a2d-e712cab14e79",
+            "secret": "0pDPnf49xu2M.eovuWY_OH.EzKpRHZc=",
+            "tenant": "ac2f7c34-b935-48e9-abdc-11e5d4fcb2b0",
+            "type": "ActiveDirectoryOAuth"
+          },
+          "method": "GET",
+          "uri": "https://graph.microsoft.com/beta/ssw.com.au/users"
+        },
+        "runAfter": {
+          "LocationMember": [
+            "Succeeded"
+          ]
+        },
+        "runtimeConfiguration": {
+          "paginationPolicy": {
+            "minimumItemCount": 500
+          }
+        },
+        "type": "Http"
+      },
+      "Get_Azure_Users_Body": {
+        "inputs": "@body('Get_Azure_Users')['value']",
+        "runAfter": {
+          "Get_Azure_Users": [
+            "Succeeded"
+          ]
+        },
+        "type": "Compose"
+      },
+      "LocationMember": {
+        "inputs": {
+          "variables": [
+            {
+              "name": "LocationMember",
+              "type": "String"
+            }
+          ]
+        },
+        "runAfter": {
+          "MemberOf": [
+            "Succeeded"
+          ]
+        },
+        "type": "InitializeVariable"
+      },
+      "Loop_Through_Users": {
+        "actions": {
+          "Apply_to_each_3": {
+            "actions": {
+              "Condition_4": {
+                "actions": {
+                  "Increment_variable": {
+                    "inputs": {
+                      "name": "Counter",
+                      "value": 1
+                    },
+                    "runAfter": {},
+                    "type": "IncrementVariable"
+                  }
+                },
+                "expression": {
+                  "startsWith": [
+                    "@items('Loop_Through_Users')['userprincipalname']",
+                    "@body('Get_response_details_3')?['re03214c6144645a2b8d4628a841efd63']"
+                  ]
+                },
+                "runAfter": {
+                  "Get_response_details_3": [
+                    "Succeeded"
+                  ]
+                },
+                "type": "If"
+              },
+              "Get_response_details_3": {
+                "inputs": {
+                  "host": {
+                    "connection": {
+                      "name": "@parameters('$connections')['microsoftforms']['connectionId']"
+                    }
+                  },
+                  "method": "get",
+                  "path": "/formapi/api/forms('@{encodeURIComponent('NHwvrDW56Uir3BHl1PyysOkoSIvscVRFgUJzIBzDA7NUQkEwUURYVDQ2UUxBS0ZWT1NDSzkzUEtUWC4u')}')/responses",
+                  "queries": {
+                    "response_id": "@items('Apply_to_each_3')?['resourceData']?['responseId']"
+                  }
+                },
+                "metadata": {
+                  "flowSystemMetadata": {
+                    "swaggerOperationId": "GetFormResponseById"
+                  }
+                },
+                "runAfter": {},
+                "type": "ApiConnection"
+              }
+            },
+            "foreach": "@triggerBody()?['value']",
+            "runAfter": {},
+            "type": "Foreach"
+          }
+        },
+        "foreach": "@outputs('Get_Azure_Users_Body')",
+        "runAfter": {
+          "Get_Azure_Users_Body": [
+            "Succeeded"
+          ]
+        },
+        "type": "Foreach"
+      },
+      "Manager": {
+        "inputs": {
+          "variables": [
+            {
+              "name": "Manager",
+              "type": "String"
+            }
+          ]
+        },
+        "runAfter": {
+          "Counter": [
+            "Succeeded"
+          ]
+        },
+        "type": "InitializeVariable"
+      },
+      "MemberOf": {
+        "inputs": {
+          "variables": [
+            {
+              "name": "MemberOf",
+              "type": "String"
+            }
+          ]
+        },
+        "runAfter": {
+          "Organizational_Unit": [
+            "Succeeded"
+          ]
+        },
+        "type": "InitializeVariable"
+      },
+      "Organizational_Unit": {
+        "inputs": {
+          "variables": [
+            {
+              "name": "OU",
+              "type": "String"
+            }
+          ]
+        },
+        "runAfter": {
+          "Manager": [
+            "Succeeded"
+          ]
+        },
+        "type": "InitializeVariable"
+      }
+    },
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "$connections": {
+        "defaultValue": {},
+        "type": "Object"
+      }
+    },
+    "triggers": {
+      "SSW_User_Creation_From_Submitted": {
+        "inputs": {
+          "body": {
+            "eventType": "responseAdded",
+            "notificationUrl": "@{listCallbackUrl()}",
+            "source": "ms-connector"
+          },
+          "host": {
+            "connection": {
+              "name": "@parameters('$connections')['microsoftforms']['connectionId']"
+            }
+          },
+          "path": "/formapi/api/forms/@{encodeURIComponent('NHwvrDW56Uir3BHl1PyysOkoSIvscVRFgUJzIBzDA7NUQkEwUURYVDQ2UUxBS0ZWT1NDSzkzUEtUWC4u')}/webhooks"
+        },
+        "metadata": {
+          "flowSystemMetadata": {
+            "swaggerOperationId": "CreateFormWebhook"
+          }
+        },
+        "type": "ApiConnectionWebhook"
+      }
+    }
+  },
+  "parameters": {
+    "$connections": {
+      "value": {
+        "filesystem": {
+          "connectionId": "/subscriptions/b8b18dcf-d83b-47e2-9886-00c2e983629e/resourceGroups/SSW.SysAdmin/providers/Microsoft.Web/connections/filesystem",
+          "connectionName": "filesystem",
+          "id": "/subscriptions/b8b18dcf-d83b-47e2-9886-00c2e983629e/providers/Microsoft.Web/locations/australiaeast/managedApis/filesystem"
+        },
+        "microsoftforms": {
+          "connectionId": "/subscriptions/b8b18dcf-d83b-47e2-9886-00c2e983629e/resourceGroups/SSW.SysAdmin/providers/Microsoft.Web/connections/microsoftforms",
+          "connectionName": "microsoftforms",
+          "id": "/subscriptions/b8b18dcf-d83b-47e2-9886-00c2e983629e/providers/Microsoft.Web/locations/australiaeast/managedApis/microsoftforms"
+        },
+        "sharepointonline": {
+          "connectionId": "/subscriptions/b8b18dcf-d83b-47e2-9886-00c2e983629e/resourceGroups/SSW.SysAdmin/providers/Microsoft.Web/connections/sharepointonline",
+          "connectionName": "sharepointonline",
+          "id": "/subscriptions/b8b18dcf-d83b-47e2-9886-00c2e983629e/providers/Microsoft.Web/locations/australiaeast/managedApis/sharepointonline"
+        }
+      }
+    }
+  }
+}
