@@ -71,7 +71,7 @@ foreach($User in $UserList)
         $bodyhtml += "<b>Surname:</b> $Surname<br>"
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
-        $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
+        $bodyhtml += "<p>Documentation for the SSW Auto Create AD User: <br>"
         $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
         $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
@@ -106,7 +106,7 @@ foreach($User in $UserList)
         $bodyhtml += "<b>Surname:</b> $Surname<br>"
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
-        $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
+        $bodyhtml += "<p>Documentation for the SSW Auto Create AD User: <br>"
         $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
         $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
@@ -147,7 +147,7 @@ foreach($User in $UserList)
         $bodyhtml += "<b>Surname:</b> $Surname<br>"
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
-        $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
+        $bodyhtml += "<p>Documentation for the SSW Auto Create AD User: <br>"
         $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
         $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
@@ -182,7 +182,7 @@ foreach($User in $UserList)
         $bodyhtml += "<b>Surname:</b> $Surname<br>"
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
-        $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
+        $bodyhtml += "<p>Documentation for the SSW Auto Create AD User: <br>"
         $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
         $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
@@ -209,7 +209,7 @@ foreach($User in $UserList)
         $bodyhtml += "<b>Surname:</b> $Surname<br>"
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
-        $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
+        $bodyhtml += "<p>Documentation for the SSW Auto Create AD User: <br>"
         $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
         $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
@@ -232,7 +232,7 @@ foreach($User in $UserList)
         $bodyhtml += "<b>Mobile:</b> $Mobile<br>"
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
-        $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
+        $bodyhtml += "<p>Documentation for the SSW Auto Create AD User: <br>"
         $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
         $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
