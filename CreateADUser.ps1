@@ -118,45 +118,46 @@ foreach($User in $UserList)
         }
 
         ## Define credentials for Exchange Remote Mailbox Enable, also partially used with creating skype user
-        $ExchangeServer = "SYDEXCH2016P01"
+        #$ExchangeServer = "SYDEXCH2016P01"
         $SkypeExchUsername = “SRV_CreateADUser@ssw.com.au”
         $SkypeExchPasswordContent = cat "C:\AutoCreateADUser\PasswordExchange.txt"
         $SkypeExchPassword = ConvertTo-SecureString -String $SkypeExchPasswordContent -AsPlainText -Force
         $SkypeExchCred = new-object -typename System.Management.Automation.PSCredential -argumentlist $SkypeExchUsername, $SkypeExchPassword
-        $ExchangeSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri "http://$ExchangeServer/PowerShell/" -Authentication Kerberos -Credential $SkypeExchCred
+        #$ExchangeSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri "http://$ExchangeServer/PowerShell/" -Authentication Kerberos -Credential $SkypeExchCred
 
-        try{
+		#Commented Out as we no longer have an on-premises exchange server
+        #try{
         ## Provison remote mailbox on eonpremises Exchange server, if this is not needed comment out section
-        LogWrite "Enabling Remote Mailbox: " $User["SysAdmin_User_GivenName"] " " $User["SysAdmin_User_Surname"]""
-        Import-PSSession $ExchangeSession
-        Enable-RemoteMailbox -Identity $User_SAM'@ssw.com.au' -RemoteRoutingAddress $User_SAM'@sswcom.onmicrosoft.com'
-        Update-OfflineAddressBook -Identity "Default Offline Address Book"
-        Update-GlobalAddressList -Identity "Default Global Address List"
-        Remove-PSSession $ExchangeSession
-        LogWrite "Completed enabling remote mailbox"
-        }
-        catch{
-        $UserRemoteMail = "User enable remote mailbox has failed, please check user has synced to O365."
-        LogWrite "User enable remote mailbox has failed, please check user has synced to O365."
-               
-        $bodyhtml =  "<div style='font-family:Calibri;'>"
-        $bodyhtml += "</H3>"
-        $bodyhtml += "<p>There was an issue creating a new user, at the enable remote mailbox phase.</p>"
-        
-        $bodyhtml += "<b>Firstname:</b> $Firstname<br>"
-        $bodyhtml += "<b>Surname:</b> $Surname<br>"
-
-        $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
-        $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
-        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
-        $bodyhtml += "<p></p>"
-        $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
-        
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
-
-        break
-        }
+       # LogWrite "Enabling Remote Mailbox: " $User["SysAdmin_User_GivenName"] " " $User["SysAdmin_User_Surname"]""
+       # Import-PSSession $ExchangeSession
+       # Enable-RemoteMailbox -Identity $User_SAM'@ssw.com.au' -RemoteRoutingAddress $User_SAM'@sswcom.onmicrosoft.com'
+       # Update-OfflineAddressBook -Identity "Default Offline Address Book"
+       # Update-GlobalAddressList -Identity "Default Global Address List"
+       # Remove-PSSession $ExchangeSession
+       # LogWrite "Completed enabling remote mailbox"
+       # }
+       # catch{
+       # $UserRemoteMail = "User enable remote mailbox has failed, please check user has synced to O365."
+       # LogWrite "User enable remote mailbox has failed, please check user has synced to O365."
+       #        
+       # $bodyhtml =  "<div style='font-family:Calibri;'>"
+       # $bodyhtml += "</H3>"
+       # $bodyhtml += "<p>There was an issue creating a new user, at the enable remote mailbox phase.</p>"
+       # 
+       # $bodyhtml += "<b>Firstname:</b> $Firstname<br>"
+       # $bodyhtml += "<b>Surname:</b> $Surname<br>"
+	   #
+       # $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
+       # $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
+       # $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
+       # $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
+       # $bodyhtml += "<p></p>"
+       # $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
+       # 
+       # Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+	   #
+       # break
+       # }
 
         ## Define credentials for Skype User Creation
         $SkypeServer = "SYDLYNC2013P01.sydney.ssw.com.au"
