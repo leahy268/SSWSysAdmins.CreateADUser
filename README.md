@@ -17,5 +17,5 @@ Automatically create AD User on premises.
 6. O365 Licenses assigned automatically
 
 * Documentation can be found: https://sswcom.sharepoint.com/SysAdmin/SharedDocuments/Forms/AllItems.aspx?RootFolder=%2FSysAdmin%2FSharedDocuments%2FActive%20Directory
-* High level overview: TO DO ADD VIDEO
-* PowerShell Walkthrough: TO DO ADD VIDEO
+* High level overview: TODO: ADD VIDEO
+* PowerShell Walkthrough: TODO: ADD VIDEO
