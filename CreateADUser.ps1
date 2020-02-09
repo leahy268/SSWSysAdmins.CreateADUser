@@ -24,8 +24,12 @@ Connect-PnPOnline –Url $SharePointSiteUrl –Credentials $SharePointCred -NoTe
 
 ## Defines List in SharePoint Title is used for SysAdmin_User_UPN
 $ListName = "New AD User"
-$UserList = (Get-PnPListItem -List $ListName -Fields "Title","SysAdmin_User_Name", "SysAdmin_User_GivenName","SysAdmin_User_Surname","SysAdmin_User_DisplayName","SysAdmin_User_Office", 
-"SysAdmin_User_Email","SysAdmin_User_Street","SysAdmin_User_City","SysAdmin_User_State", "SysAdmin_User_PostCode","SysAdmin_User_MobilePhone","SysAdmin_User_JobTitle","SysAdmin_User_Manager",
+$UserList = (Get-PnPListItem -List $ListName -Fields "Title","SysAdmin_User_Name", 
+
+"SysAdmin_User_GivenName","SysAdmin_User_Surname","SysAdmin_User_DisplayName","SysAdmin_User_Office", 
+"SysAdmin_User_Email","SysAdmin_User_Street","SysAdmin_User_City","SysAdmin_User_State", 
+
+"SysAdmin_User_PostCode","SysAdmin_User_MobilePhone","SysAdmin_User_JobTitle","SysAdmin_User_Manager",
 "SysAdmin_User_OU","SysAdmin_User_SAM","SysAdmin_User_Created","SysAdmin_User_Groups","SysAdmin_User_Country","SysAdmin_User_AltEmail")
 
 
@@ -47,7 +51,17 @@ foreach($User in $UserList)
     
         try{
         LogWrite "Creating User in AD: " $User["SysAdmin_User_GivenName"] " " $User["SysAdmin_User_Surname"]""
-        New-ADUser -Name $User["SysAdmin_User_Name"] -GivenName $User["SysAdmin_User_GivenName"] -Surname $User["SysAdmin_User_Surname"] -Description $User["SysAdmin_User_JobTitle"] -DisplayName $User["SysAdmin_User_DisplayName"] -Office $User["SysAdmin_User_Office"] -EmailAddress $User["SysAdmin_User_Email"] -StreetAddress $User["SysAdmin_User_Street"] -City $User["SysAdmin_User_City"] -State $User["SysAdmin_User_State"] -PostalCode $User["SysAdmin_User_PostCode"] -MobilePhone $User["SysAdmin_User_MobilePhone"] -Title $User["SysAdmin_User_JobTitle"] -Manager $User["SysAdmin_User_Manager"] -SamAccountName $User_SAM -Path $User["SysAdmin_User_OU"]  -UserPrincipalName $User["Title"] -Company "SSW" -Country $User["SysAdmin_User_Country"]
+        New-ADUser -Name $User["SysAdmin_User_Name"] -GivenName $User["SysAdmin_User_GivenName"] -Surname $User["SysAdmin_User_Surname"] -
+
+Description $User["SysAdmin_User_JobTitle"] -DisplayName $User["SysAdmin_User_DisplayName"] -Office $User["SysAdmin_User_Office"] -
+
+EmailAddress $User["SysAdmin_User_Email"] -StreetAddress $User["SysAdmin_User_Street"] -City $User["SysAdmin_User_City"] -State $User
+
+["SysAdmin_User_State"] -PostalCode $User["SysAdmin_User_PostCode"] -MobilePhone $User["SysAdmin_User_MobilePhone"] -Title $User
+
+["SysAdmin_User_JobTitle"] -Manager $User["SysAdmin_User_Manager"] -SamAccountName $User_SAM -Path $User["SysAdmin_User_OU"]  -
+
+UserPrincipalName $User["Title"] -Company "SSW" -Country $User["SysAdmin_User_Country"]
         ## Had to initiate this after creating user, otherwise I was recieving errors
         Set-ADAccountPassword -Identity $User_SAM -Reset -NewPassword (ConvertTo-SecureString -AsPlainText "This!c03f0l9" -Force)
         Set-AdUser -Identity $User_SAM -Enabled:$True -PasswordNeverExpires:$True -ChangePasswordAtLogon:$False
@@ -72,12 +86,18 @@ foreach($User in $UserList)
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
         $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
-        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWSysAdmins.SSWCreateADUser> SSWSysAdmins.SSWCreateADUser Github 
+
+</a><br>"
+        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> 
+
+SSWSysAdmins.SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname 
+
+$Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
 
         break
         }
@@ -89,7 +109,9 @@ foreach($User in $UserList)
         Invoke-Command -ComputerName SYDADFSP01 -ScriptBlock { Start-ADSyncSyncCycle -PolicyType Delta }
 
         ## Wait for user to be provisioned in O365 this generally takes around 60 seconds
-        ## TO DO add a While command so that I can determine with true value if the user is provisioned before moving one, instead of based on time, need to add O365 commands here, user cannot be MFA enabled
+        ## TO DO add a While command so that I can determine with true value if the user is provisioned before moving one, instead of based on 
+
+time, need to add O365 commands here, user cannot be MFA enabled
         Start-Sleep -Seconds 90
         LogWrite "Syncing complete"
         #Remove-PSSession
@@ -107,12 +129,18 @@ foreach($User in $UserList)
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
         $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
-        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWSysAdmins.SSWCreateADUser> SSWSysAdmins.SSWCreateADUser Github 
+
+</a><br>"
+        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> 
+
+SSWSysAdmins.SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname 
+
+$Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
 
         break
         }
@@ -123,7 +151,9 @@ foreach($User in $UserList)
         $SkypeExchPasswordContent = cat "C:\AutoCreateADUser\PasswordExchange.txt"
         $SkypeExchPassword = ConvertTo-SecureString -String $SkypeExchPasswordContent -AsPlainText -Force
         $SkypeExchCred = new-object -typename System.Management.Automation.PSCredential -argumentlist $SkypeExchUsername, $SkypeExchPassword
-        #$ExchangeSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri "http://$ExchangeServer/PowerShell/" -Authentication Kerberos -Credential $SkypeExchCred
+        #$ExchangeSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri "http://$ExchangeServer/PowerShell/" -
+
+Authentication Kerberos -Credential $SkypeExchCred
 
 		#Commented Out as we no longer have an on-premises exchange server
         #try{
@@ -149,12 +179,18 @@ foreach($User in $UserList)
 	   #
        # $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
        # $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-       # $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
-       # $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
+       # $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWSysAdmins.SSWCreateADUser> SSWSysAdmins.SSWCreateADUser Github 
+
+</a><br>"
+       # $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?
+
+e=bfFt93> SSWSysAdmins.SSWCreateADUser SharePoint </a></p>"
        # $bodyhtml += "<p></p>"
        # $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
        # 
-       # Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+       # Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname 
+
+$Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
 	   #
        # break
        # }
@@ -167,7 +203,9 @@ foreach($User in $UserList)
         ## Provision Skype User, this just provisions pc-to-pc comms, no site or # is added
         LogWrite "Creating Skype Profile for: " $User["SysAdmin_User_GivenName"] " " $User["SysAdmin_User_Surname"]""
         Import-PSSession $SkypeSession
-        Enable-CsUser -Identity $User_SAM -RegistrarPool "SydLync2013P01.sydney.ssw.com.au" -SipAddressType SamAccountName -SipDomain ssw.com.au
+        Enable-CsUser -Identity $User_SAM -RegistrarPool "SydLync2013P01.sydney.ssw.com.au" -SipAddressType SamAccountName -SipDomain 
+
+ssw.com.au
         Remove-PSSession $SkypeSession
         LogWrite "Completed creating skype profile"
         }
@@ -184,12 +222,18 @@ foreach($User in $UserList)
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
         $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
-        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWSysAdmins.SSWCreateADUser> SSWSysAdmins.SSWCreateADUser Github 
+
+</a><br>"
+        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> 
+
+SSWSysAdmins.SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname 
+
+$Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
         
         break
         }
@@ -211,12 +255,18 @@ foreach($User in $UserList)
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
         $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
-        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWSysAdmins.SSWCreateADUser> SSWSysAdmins.SSWCreateADUser Github 
+
+</a><br>"
+        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> 
+
+SSWSysAdmins.SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname 
+
+$Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
         
         break
         }
@@ -234,12 +284,18 @@ foreach($User in $UserList)
 
         $bodyhtml += "<p>Tip: You can find a log file with more information at <a href=$LogFile> $LogFile </a></p>"
         $bodyhtml += "<p>Documentation for the SSW Blacklist Checker: <br>"
-        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWCreateADUser> SSWCreateADUser Github </a><br>"
-        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> SSWCreateADUser SharePoint </a></p>"
+        $bodyhtml += "Public - <a href=https://github.com/SSWConsulting/SSWSysAdmins.SSWCreateADUser> SSWSysAdmins.SSWCreateADUser Github 
+
+</a><br>"
+        $bodyhtml += "Internal - <a href=https://sswcom.sharepoint.com/:w:/g/SysAdmin/EXvH_G59-QNAgusHshEhQtEB8egZa_pXAdAZb8SlCx20Pw?e=bfFt93> 
+
+SSWSysAdmins.SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
 
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname $Surname" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname 
+
+$Surname" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
 
 
     }
