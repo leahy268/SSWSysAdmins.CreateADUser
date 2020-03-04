@@ -19,3 +19,5 @@ Automatically create AD User on premises.
 * Documentation can be found: https://sswcom.sharepoint.com/SysAdmin/SharedDocuments/Forms/AllItems.aspx?RootFolder=%2FSysAdmin%2FSharedDocuments%2FActive%20Directory
 * High level overview: TODO: ADD VIDEO
 * PowerShell Walkthrough: TODO: ADD VIDEO
+
+Owner: [Steven Andrews](https://www.ssw.com.au/people/steven-andrews)
