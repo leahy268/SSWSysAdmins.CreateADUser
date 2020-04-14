@@ -1,6 +1,8 @@
 ## Install PnPOline on user that will be running server: https://github.com/SharePoint/pnp-powershell/releases
+## TODO: COMMENT BASED HELP EVERYWHERE
 
 ## Let's create a log so we can see what is happening
+## TODO: import logwrite module
 Function LogWrite
 {
    $Systemusername = $env:USERNAME
@@ -15,6 +17,7 @@ $Logfile = "C:\AutoCreateADUser\Log.txt"
 LogWrite "Auto Create User Log Started"
 
 ## Define credentials and login to SharePoint with PnPOnline
+## TODO: Change Username and Password to something encrypted
 $SharePointUser = “sp_svc@ssw.com.au”
 $SharePointPasswordContent = cat "C:\AutoCreateADUser\PasswordSharePoint.txt"
 $SharePointPassword = ConvertTo-SecureString -String $SharePointPasswordContent -AsPlainText -Force
@@ -147,6 +150,8 @@ $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.out
 
         ## Define credentials for Exchange Remote Mailbox Enable, also partially used with creating skype user
         #$ExchangeServer = "SYDEXCH2016P01"
+        ## TODO: Fix username and password encryption
+        ## TODO: When commented out remove usernames
         $SkypeExchUsername = “SRV_CreateADUser@ssw.com.au”
         $SkypeExchPasswordContent = cat "C:\AutoCreateADUser\PasswordExchange.txt"
         $SkypeExchPassword = ConvertTo-SecureString -String $SkypeExchPasswordContent -AsPlainText -Force
