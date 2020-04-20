@@ -82,7 +82,7 @@ UserPrincipalName $User["Title"] -Company "SSW" -Country $User["SysAdmin_User_Co
          
         $bodyhtml =  "<div style='font-family:Calibri;'>"
         $bodyhtml += "</H3>"
-        $bodyhtml += "<p>There was an issue creating a new user, at the AD User Creation phase.</p>"
+        $bodyhtml += "<p>FAILED: Error creating a new user. Step: AD User Creation.</p>"
         
         $bodyhtml += "<b>Firstname:</b> $Firstname<br>"
         $bodyhtml += "<b>Surname:</b> $Surname<br>"
@@ -98,9 +98,9 @@ SSWSysAdmins.SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname 
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "FAILED: SSW.CreateADUser - New AD User: $Firstname 
 
-$Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+$Surname" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
 
         break
         }
@@ -125,7 +125,7 @@ time, need to add O365 commands here, user cannot be MFA enabled
        
         $bodyhtml =  "<div style='font-family:Calibri;'>"
         $bodyhtml += "</H3>"
-        $bodyhtml += "<p>There was an issue creating a new user, at the O365 sync stage.</p>"
+        $bodyhtml += "<p>FAILED: Error creating a new user. Step:O365 sync stage.</p>"
         
         $bodyhtml += "<b>Firstname:</b> $Firstname<br>"
         $bodyhtml += "<b>Surname:</b> $Surname<br>"
@@ -141,9 +141,9 @@ SSWSysAdmins.SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname 
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "FAILED: SSW.CreateADUser - New AD User: $Firstname 
 
-$Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+$Surname" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
 
         break
         }
@@ -193,9 +193,9 @@ e=bfFt93> SSWSysAdmins.SSWCreateADUser SharePoint </a></p>"
        # $bodyhtml += "<p></p>"
        # $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
        # 
-       # Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname 
+       # Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "FAILED: SSW.CreateADUser - New AD User: $Firstname 
 
-$Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+$Surname" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
 	   #
        # break
        # }
@@ -220,7 +220,7 @@ ssw.com.au
                
         $bodyhtml =  "<div style='font-family:Calibri;'>"
         $bodyhtml += "</H3>"
-        $bodyhtml += "<p>There was an issue creating a new user, at the enable skype user phase.</p>"
+        $bodyhtml += "<p>FAILED: Error creating a new user. Step: AD User Creation: Enable skype user phase.</p>"
         
         $bodyhtml += "<b>Firstname:</b> $Firstname<br>"
         $bodyhtml += "<b>Surname:</b> $Surname<br>"
@@ -236,9 +236,9 @@ SSWSysAdmins.SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname 
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "NFAILED: SSW.CreateADUser - New AD User: $Firstname 
 
-$Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+$Surname" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
         
         break
         }
@@ -253,7 +253,7 @@ $Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.out
                
         $bodyhtml =  "<div style='font-family:Calibri;'>"
         $bodyhtml += "</H3>"
-        $bodyhtml += "<p>There was an issue creating a new user, Changing SysAdmin_User_Created Boolean to true has failed phase.</p>"
+        $bodyhtml += "<p>FAILED: Error creating a new user. Step: AD User Creation: Changing SysAdmin_User_Created Boolean to true has failed phase.</p>"
         
         $bodyhtml += "<b>Firstname:</b> $Firstname<br>"
         $bodyhtml += "<b>Surname:</b> $Surname<br>"
@@ -269,9 +269,9 @@ SSWSysAdmins.SSWCreateADUser SharePoint </a></p>"
         $bodyhtml += "<p></p>"
         $bodyhtml += "<p>-- Powered by SSW.CreateADUser<br /> Server: $env:computername </p>"
         
-        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "New AD User Created for - $Firstname 
+        Send-MailMessage -from "sswserverevents@ssw.com.au" -to "SSWSysAdmins@ssw.com.au" -Subject "FAILED: SSW.CreateADUser - New AD User: $Firstname 
 
-$Surname has failed" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
+$Surname" -Body $bodyhtml -SmtpServer "ssw-com-au.mail.protection.outlook.com" -bodyashtml
         
         break
         }
