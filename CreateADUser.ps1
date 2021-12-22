@@ -21,7 +21,7 @@ Function LogWrite {
     $SharePointPasswordContent = cat "C:\AutoCreateADUser\PasswordSharePoint.txt"
     $SharePointPassword = ConvertTo-SecureString -String $SharePointPasswordContent -AsPlainText -Force
     $SharePointCred = new-object -typename System.Management.Automation.PSCredential -argumentlist $SharePointUser, $SharePointPassword
-    $SharePointSiteUrl = "https://sswcom.sharepoint.com/sysadmin"
+    $SharePointSiteUrl = "https://sswcom.sharepoint.com/sites/SSWNetworkAdmins"
     Connect-PnPOnline –Url $SharePointSiteUrl –Credentials $SharePointCred
     
     ## Defines List in SharePoint Title is used for SysAdmin_User_UPN
