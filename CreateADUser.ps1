@@ -62,8 +62,13 @@ Function LogWrite {
                 LogWrite "Finished creating AD user: " $User["SysAdmin_User_GivenName"] " " $User["SysAdmin_User_Surname"]""
             }
             catch {
-                $UserCreation = "User Creation has failed, please check all inputs are correct."
-                LogWrite "User Creation has failed, please check all inputs are correct."
+                $e = $_.Exception
+                $line = $_.InvocationInfo.ScriptLineNumber
+                $msg = $e.Message 
+
+                $UserCreation = "User Creation has failed, please check all inputs are correct." + $msg + " Line:" + $line
+                LogWrite "User Creation has failed, please check all inputs are correct." + $msg + " Line:" + $line
+                
              
                 $bodyhtml = "<div style='font-family:Calibri;'>"
                 $bodyhtml += "</H3>"
